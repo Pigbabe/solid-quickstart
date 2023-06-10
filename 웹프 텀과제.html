@@ -1,0 +1,192 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> 웹프 텀과제 </title>
+    <style>
+       /* CSS 스타일 */
+       td::first-letter{font-weight: bold; color: olive;}
+       
+      *{box-sizing: border-box;}                      /* 전체 스타일 설정 */
+      
+      #container{height: 400px;}                      /* 컨테이너 스타일 */
+
+      #footer{height: 7%; clear: both;                /* 푸터 스타일 */
+              background: lightslategrey; 
+              text-align: center;}
+
+      #tablecss{ text-align: center; margin: 50px;    /* 테이블 스타일 */
+         display:inline-table; position: relative;}
+      
+
+      .firstcolumn{ width: 50px;}                     /* 첫 번째 열 스타일 */
+
+      #menuvir, #content { height: 198%; }            /* 높이는 크롬 전체화면 기준으로 맞춤*/
+
+      #menuvir{ color: lightseagreen;               /* 세로 메뉴 스타일 */
+             float: left; width: 15%;
+             background: lightgray;
+             z-index: 1; 
+             background: black; 
+             overflow-x: hidden;
+           }
+
+      #menus  {  display: block;                      /* 메뉴 스타일 */
+                 background: dimgray;
+                 margin : 5px;
+                 border-radius : 40px; 
+                 color: white; padding: 16px; text-decoration: none;
+                 text-shadow : 2px 2px 5px blue;
+              } 
+
+      #menus:hover { 
+                 background-color: lightgray; 
+                 color: black; 
+                    }
+
+      #menuhor{                                        /* 가로 메뉴 스타일 */
+        display: none;
+        background: lightblue;
+        margin-left: 10px;
+        padding: 5px;
+      }
+
+      #content {float:left; width: 85%;
+                
+               }
+
+      h3{ background:brown;}
+      
+      .f1{margin: 0px 0px; padding: 0px 0px;           /* 각 셀 스타일 */
+          border: 0px; 
+          width: 100%; height: 100%;
+          visibility: hidden;
+        }
+      .f2{margin: 0px 0px; padding: 0px 0px;
+          border: 0px; 
+          width: 100%; height: 100%;
+          visibility: hidden;
+        }
+      #a2:active .f2{visibility: visible;}
+
+      /* 강의 스타일 */
+      .SM{ background: lightcoral; font-weight: bold;}
+      .WP{ background: burlywood; font-weight: bold;}
+      .CS{ background: lightseagreen; font-weight: bold;}
+      .IS{ background: lightskyblue; font-weight: bold;}
+      .PL{ background: rgb(48, 197, 95); font-weight: bold;}
+      .JK{ background: rgb(177, 91, 226); font-weight: bold;}
+
+      /* 일기장 드롭다운 메뉴 스타일 */
+      #dropdownMenu {
+        display: block; color: black; padding: 4px 6px;
+        text-decoration: none; text-align: left; 
+      }
+
+      #dropdownMenu a:hover{background: lavender; color: black; }
+
+      ul {
+        background: lightgray; padding: 6px; margin: 0; 
+      }
+      li { display: inline; padding: 10px 200px; }
+
+      li a { color: black; text-decoration: none; padding: 5px 10px; } 
+
+      li a:hover { background: darkgray; color: black; }
+      
+      li.mainmenu { display: inline-block; }
+      
+
+    </style>
+  </head>
+
+  <body>
+  
+    <h3 style="text-align: center ; font-size: x-large;"> 송재형의 홈페이지 </h3><hr> 
+
+
+    <!-- 상단 메뉴 -->
+    <div id="container">                 
+      <div id="menuhor">  
+        <a href="#" style="margin-right:100px ; margin-left: 100px;"  onmouseover="showDropdown()" onmouseout="hideDropdown()"> 시간표</a>
+      </div>
+
+      <div id="dropdownMenu" style="display: none;" onmouseover="showDropdown()" onmouseout="hideDropdown()">
+        <ul>
+          <li><a href="#" style="position: absolute; left: 530px; top:125px;color:black; font-size: small; display: block;background: grey;">1학년 시간표</a></li>
+          <li><a href="#" style="position: absolute; left: 530px; top:150px; color:black; font-size: small; display: block;background: grey;">2학년 시간표</a></li>
+          <li><a href="#" style="position: absolute; left: 530px; top:175px;color:black; font-size: small; display: block;background: grey;">3학년 시간표</a></li>
+        </ul>
+      </div>
+
+
+      <!-- 메뉴 선택 -->
+      <div id="menuvir">                 
+        <select onchange="updateMenuSelection(this.value)" id="menus">  
+          <option value="" id="menus">메뉴 선택</option>
+          <option value="1">메뉴 1번</option>
+          <option value="2">메뉴 2번</option>
+          <option value="3">메뉴 3번</option>
+          <option value="4">메뉴 4번</option>
+        </select>
+      </div>
+
+
+      <!-- 메뉴 선택 결과 -->
+      <div id="menuSelection"></div>   
+      
+      
+      <!-- 일정표 -->
+      <div id="content">                 
+        <table border="10" id="tablecss" style="background: black; color: white;">
+          <caption style="color: burlywood;"> 재형쿵의 일정표</caption>
+          <thead> <td style="width: 70px; height: 50px;"> </td> 
+                  <td style="width: 100px;">월</td>
+                  <td style="width: 100px;">화</td>
+                  <td style="width: 100px;">수</td>
+                  <td style="width: 100px;">목</td>
+                  <td style="width: 100px;">금</td> 
+          </thead>
+          <tr> <td>1교시 (09~10:30)</td> <td class="SM">서버 관리</td> <td> </td> <td> </td> <td> </td> <td class="JK"> 일본 문화의 이해  </td></tr>
+          <tr> <td>2교시 (10:30~12:00)</td> <td> </td> <td> </td> <td class="JK"> 일본 문화의 이해</td> <td class="SM"> 서버 관리</td> <td> </td></tr>
+          <tr> <td style="height: 20px;">점심시간</td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td></tr>
+          <tr> <td>3교시 (13:00~14:30)</td> <td class="WP"> 웹프로그래밍</td> <td> </td> <td class="CS"> 컴퓨터구조</td> <td class="IS"> 임베디드 &nbsp&nbsp시스템</td> <td></td> </tr>
+          <tr> <td>4교시 (14:30~16:00)</td> <td class="CS"> 컴퓨터구조</td> <td class="IS"> 임베디드 &nbsp&nbsp시스템</td> <td class="WP"> 웹프로그래밍</td> <td> </td> <td class="PL">프로그래밍 언어</td></tr>
+          <tr> <td>5교시 (16:00~17:30)</td> <td> </td> <td class="PL"> 프로그래밍 언어</td> <td> </td> <td> </td> <td> </td></tr>
+        </table>
+        
+      </div>
+      
+      <div id="footer"> 문의사항 010-4576-0768 (송재형)</div>      <!-- 하단 푸터 -->
+    </div>
+
+
+    <script>
+
+      var dropdownTimeout;
+
+      /* 메뉴 선택이 변경되었을 때 호출되는 함수입니다. */
+      function updateMenuSelection(value) {
+        const menuSelectionDiv = document.getElementById('menuSelection');
+        menuSelectionDiv.textContent = value ? `` : '';
+      }
+
+      /* 아래는 드롭다운 메뉴를 토글하는 함수 */
+  
+      /* 드롭다운 메뉴를 보여주는 함수 */
+  function showDropdown() {
+    clearTimeout(dropdownTimeout);
+    var dropdownMenu = document.getElementById("dropdownMenu");
+    dropdownMenu.style.display = "block";
+  }
+
+  /* 드롭다운 메뉴를 숨기는 함수 */
+  function hideDropdown() {
+    dropdownTimeout = setTimeout(function() {
+      var dropdownMenu = document.getElementById("dropdownMenu");
+      dropdownMenu.style.display = "none";
+    }, 500);
+  }
+    </script>
+
+  </body>
+</html>
